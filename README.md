@@ -1,154 +1,164 @@
-# 🧩 Assignment 5: Group Test Management — *Word Puzzle Game Plus*
+# 🧪 Final Group Test Report Template — Word Puzzle Game Plus
 
-## 🎯 Learning Objectives
+**Level:** Intermediate QA | **Week 5:** Test Management
 
-By the end of this assignment, you will be able to:
+**Course:** Software Testing & Quality Assurance  
+**Module:** Test Management (Week 5)  
+**Project Type:** Group Assessment  
+**Submission Date:** 2025-10-28
 
-- Develop and manage a **test plan** for a real web-based system.  
-- Apply **risk-based testing** and **test prioritization** techniques.  
-- Define and evaluate **entry and exit criteria**.  
-- Perform **test monitoring and control** using metrics and GitHub issues.  
-- Collaborate effectively in a **QA team environment**.
+## Team Information
 
----
+| Role | Name | Responsibilities |
+|------|------|------------------|
+| Test Manager | KENEDY AMBILA| Planning, scheduling, coordination, metric tracking |
+| Risk Analyst | JULIET BONANERI| Risk identification, prioritization, test design linkage |
+| Test Executor |DANIEL MUSEMBI | Execution, evidence capture, defect logging |
 
-## 👥 Group Configuration
+## Group Rules
 
-Work in **teams of exactly 3 members**.
+- Each student must belong to only one group.
+- Duplicate membership or multiple submissions will result in invalidation.
+- Every group member must contribute towards this project
 
-| Role | Responsibilities |
-|------|------------------|
-| **Test Manager** | Draft the test plan, schedule activities, and track metrics. |
-| **Risk Analyst** | Identify, assess, and prioritize risks. Design high-risk test cases. |
-| **Test Executor** | Execute test cases, capture defects, and validate fixes. |
+## Project Overview
 
-> ⚠️ **Important Group Rule:**  
-> Each student must belong to **only one group**.  
-> You **may not** appear in two different groups or submit under multiple teams.  
-> Duplicate participation or shared submissions will be treated as **academic misconduct**.
+**System Under Test:** Word Puzzle Game Plus  
+**Technology Stack:** HTML, CSS, JavaScript  
+**Environment:** Chrome Browser (Desktop)
 
-> 💡 Collaboration via **GitHub Projects / Issues** is mandatory.  
-> Each issue must include a severity level, risk mapping, and evidence (e.g., screenshot).
+### Features Under Test
 
----
+| Feature | Description | Risk Category |
+|---------|-------------|---------------|
+| Reset Game | Clears score and progress instantly |Medium|
+| Leaderboard | Stores top 3 scores in localStorage |High |
+| Bonus Round | Every 3 puzzles → doubles score |High|
+| Hint function | deduct two points when used |medium |
+| Scramble logic | random display of words |low |
+| Guess check | validates users answers | high|
 
-## 🕹️ System Under Test: *Word Puzzle Game Plus*
+## Test Plan
 
-An upgraded browser-based word puzzle game that challenges players to guess scrambled words.
+### Objectives
 
-### 🔧 New Features (Intermediate Scope)
+- Verify correctness of all core gameplay features.
+- Confirm data persistence via leaderboard in localStorage.
+- Ensure all identified risks have test coverage.
+- Validate score logic, bonus doubling, and hint penalty. 
 
-| Feature | Description | Test Focus |
-|----------|--------------|-------------|
-| **Reset Game** | Resets score and progress instantly | State management, data integrity |
-| **Leaderboard** | Stores top 3 scores in `localStorage` | Persistence, boundary values |
-| **Bonus Round** | Every 3 puzzles → score × 2 | Logic, arithmetic, event sequencing |
+### Scope
 
-These additions increase testing complexity across functional, UI, and risk dimensions.
+**In Scope:**
+- Functional testing of gameplay logic.
+- Automated unit testing of key functions (Jest).
+- Manual UI testing for Chrome browser (desktop).
 
----
+**Out of Scope:**
+- Mobile browser behavior.
+- Backend server integration.
+- Accessibility and performance benchmarking.
+- 
+- 
 
-## 📋 Deliverables
+### Tools & Resources
+- **Tools**: GitHub, Jest, VS Code, Chrome Browser
+- **Resources**: index.html, gameLogic.js, game.test.js, test data words list
 
-All teams submit **one combined report** named `Group_Test_Management_Report.md`.
+### Schedule
 
-### 1️⃣ Test Plan
-Include:
-- Objectives  
-- Scope (in/out)  
-- Resources (roles + tools)  
-- Schedule (phase timeline)  
-- Entry / Exit criteria  
-- Environment (Chrome recommended)
-
-### 2️⃣ Risk Analysis
-- Identify at least **6 risks** (functional + non-functional).  
-- Rate each by **Likelihood × Impact** → Priority.  
-- Define **Mitigation / Contingency** actions.  
-- Add a **risk-coverage pie chart**.
-
-### 3️⃣ Test Design & Execution
-- Minimum **8 test cases** (≥ 5 risk-based).  
-- Include **2 negative** and **1 usability** test.  
-- Use this format:
-
-```
-ID: TC-03
-Feature: Leaderboard
-Objective: Verify top-3 sorting logic
-Steps:
-
-Achieve scores 5, 12, 8 → check order
-Expected: Scores sorted descending
-Risk Priority: High
-```
+| Phase | Planned Duration | Actual Duration | Status |
+|-------|------------------|-----------------|--------|
+|Planning and Set-up | 1.5| 2| completed|
+|test design and risk analysis|1 |1 | completed|
+|execution i.e manual and jest| 1|1.5 | completed|
+|report and review | 1|2 |completed |
 
 
-### 4️⃣ Defect Reporting
-- Log at least **3 defects** on GitHub Issues.  
-- Each issue must specify:
-  - **Title**
-  - **Steps to Reproduce**
-  - **Expected / Actual**
-  - **Severity**
-  - **Risk Impact ID**
-  - **Screenshot or evidence**
+## Risk Analysis
 
-### 5️⃣ Test Monitoring & Metrics
-Track and visualize:
-- Test Case Pass %  
-- Defect Density (defects / test cases)  
-- Risk Coverage Ratio  
-- Regression Success Rate
+### Risks
 
-Represent these via tables or simple charts.
+| ID | Feature | Risk Description | Likelihood | Impact | Priority | Mitigation Strategy |
+|----|---------|------------------|------------|--------|----------|---------------------|
+| rsk1| Leaderboard|Data loss or corruption in localStorage |3 |5 |high |Validate data parsing and writing |
+| rsk2|Bonus Round |Bonus applied incorrectly |3 |4 |high | Unit test bonus math, code review|
+| rsk3|Hint Function | Reduces score below 0|2|2 | high| Clamp score to minimum of 0|
+| rsk4|Scramble Logic |Word appears unsorted |2 |3 |medium |Add retry loop if output = input |
+| rsk5|Guess Validation | Case-sensitive mismatch|3 | 3|medium |Convert both words to lowercase |
+| rsk6| Guess Validation|Clears leaderboard unexpectedly | 2|5 |high | Separate reset logic from leaderboard storage|
 
-### 6️⃣ Reflection
-Discuss briefly:
-- How risk analysis shaped your testing focus.  
-- Trade-offs between coverage, time, and depth.  
-- How collaboration improved (or hindered) test effectiveness.
 
----
+### Risk Coverage
 
-## 📊 Suggested Metrics Reference
+- Tested Risks Percent: 5 / 6 = 83.3% coverage
+- Untested Risks Percent: rsk6 1/6 = 16.7 
 
-| Metric | Formula | Example |
-|---------|----------|----------|
-| **Defect Density** | Defects / Test Cases |  5 / 25 = 0.2 |
-| **Risk Coverage** | (Tested Risks / Total Risks) × 100 |  5 / 6 = 83 % |
-| **Pass Rate** | (Passed / Total) × 100 |  18 / 20 = 90 % |
+## Test Cases
 
----
+| ID | Feature | Objective | Expected Result | Actual Result | Status | Risk Link |
+|----|---------|-----------|----------------|---------------|--------|-----------|
+|T1 | scrambleWord|ensure words are scrambled i.e randomization|mix words diffently |pass | done|rsk4 |
+| T2|checkGuess |Verify correct answer returns true |true when match be case insesitive also |pass | done|rsk5 |
+| T3|checkGuess |Incorrect guess returns false |false when mismatch | pass|done |rsk5 |
+| T4|applyBonus |Double score correctly |20 to 40 |pass |done | rsk2|
+| T5|applyBonus| |Handle zero score safely |0 to 0 |pass |done |rsk2 |
+| T6|deductHint |Deduct 2 points safely |10 to 8 |pass |done |rsk3 |
+| T7|deductHint |Prevent negative score |1 to 0 |pass | doen|rsk3 |
+| T8|Leaderboard behaviour |Scores persist in localStorage |score remain after reload |pass |done |rsk1 |
 
-## 📎 Submission Checklist
 
-✅ `Group_Test_Management_Report.md` (single file)  
-✅ 3 GitHub issues (defects) linked  
-✅ Screenshots / logs (optional)  
-✅ Each member’s **name and role clearly stated**  
-✅ One submission per group — **do not appear in multiple groups**  
+## Defects
 
-> 📌 Each learner is responsible for their role’s section and must contribute equally.  
-> Multiple submissions from the same student across different groups will be rejected.
+| ID | Issue Title | Severity | Risk ID | Status | GitHub Link |
+|----|-------------|----------|---------|--------|-------------|
+| | | | | | |
 
----
+## Metrics
 
-## 🧠 Concept Reinforcement
+- Test Case Pass Percent: 
+- Defect Density: 
+- Risk Coverage Percent: 
+- Regression Success Rate: 
 
-**Risk-Based Testing Focus**  
-> Prioritize based on *Risk Exposure = Probability × Impact*.
+### Defect Summary
 
-**Test Monitoring Best Practices**
-- Track defects daily.  
-- Update metrics at each control point.  
-- Use visual indicators (tables / pie charts).
+- Total Defects Logged: 
+- Critical High: 
+- Fix Rate: 
 
----
+## Test Control & Project Management
 
-### 🧩 End of Assignment
+### Phases
 
-Remember: Quality is measured not by the number of bugs found,  
-but by how effectively your team planned, prioritized, and controlled the testing process.
+| Phase | Deliverable | Actual Output | Variance | Owner |
+|-------|-------------|---------------|----------|-------|
+| | | | | |
 
-Happy Testing 🧪  
+**Progress Tracking Method:**  
+**Change Control Notes:**
+
+## Lessons Learned
+
+- Most Defect Prone Feature: 
+- Risk Analysis Impact: 
+- Team Communication Effectiveness: 
+- Improvements for Next Cycle: 
+
+## Attachments
+
+- 
+
+## Sign Off
+
+| Name | Role | Initials | Date |
+|------|------|-----------|------|
+| | Test Manager | | |
+| | Risk Analyst | | |
+| | Test Executor | | |
+
+## Overall Summary
+
+**Statement:** 
+
+**Test Status:** ☐ Completed / ☐ In Progress / ☐ Deferred
